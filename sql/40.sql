@@ -1,0 +1,1 @@
+ALTER TABLE `couriers` ADD `insured_policy` VARCHAR(255) NULL AFTER `insured_amount`;

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>6Connect - Courier API Documentation</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/layout.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicons.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.8/clipboard.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="wrapper show-index">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="brand-centered">
+                    <a class="navbar-brand" href="#"> <img id="logo" class="img-responsive" src="image/favicons.png" alt="6Connect"><span id="brand-name"></span> API Documentation</a>
+                </div>
+                <div class="collapse navbar-collapse" id="this-target">
+                    <ul class="nav navbar-nav">
+                        <li><a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a></li>
+                    </ul>
+                    <ul class="nav navbar-right">
+                        <li><a id="api-toggle" href="#"><i class="fa fa-cogs fa-lg"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="test-tool-wrapper">
+            <div class="test-tool">
+                <div class="dropdown">
+                    <button class="btn btn-server dropdown-toggle" type=button data-toggle="dropdown">
+                        <span id=server-name>Production</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" id=server-list>
+                        <li><a class=server href="#">Mock</a></li>
+                    </ul>
+                </div>
+                <h1>
+                    API Testing Tool
+                </h1>
+                <div class=form-group>
+                    <div class="input-group input-group-default"><span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-link"></i></span>
+                        <input name=baseUrl type="text" class="form-control" placeholder="API" value="" readonly="readonly" />
+                    </div>
+                </div>
+
+                <form id="api-json-form" role="form">
+                    <div class=form-group>
+                        <div class="input-group input-group-default"><span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="text" name='access_key' class="form-control" placeholder="Token" value="" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class=form-group id=filepicker-wrapper>
+                        <div class="input-group input-group-default"><span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-file"></i></span>
+                            <input id=filepicker type="file" class="form-control" target-b64="" target-filename="" value="" disabled/>
+                        </div>
+                    </div>
+
+                    <div id="api-request-parameters">
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-submit-form"><img src="image/gears.gif" id=loader>
+                </form>
+
+                <div>
+                    <h2>Request</h2>
+                    <textarea id="request-data" rows=10 readonly="readonly"></textarea>
+                </div>
+
+                <div>
+                    <h2>Response:</h2>
+                    <textarea id="response-data" rows=10 readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class=sidebar-left>
+            <ul class="sidebar-nav list-unstyled" id="api-index">
+                <li class="section" id="introduction-link"><a href="#">Introduction</a></li>
+            </ul>
+        </div>
+        <div class=main-content>
+            <div class="quickstart">
+                <div id="content"></div>
+            </div>
+            <div class=information>
+                <h1 id="api-name">API Name</h1>
+                <h2><span id=method>POST/GET</span><span id="api-url">API</span></h2>
+                <hr>
+                <h2>Description</h2>
+                <p class=lead id=api-description>
+                    Description of the API URL Here...
+                </p>
+                <hr>
+                <h2>Request Headers</h2>
+                <div class="table-responsive table-request-header">
+                    <table class="table table-borderless" id="request-header">
+                    </table>
+                </div>
+                <hr>
+                <h2>Request Parameters</h2>
+                <div class="table-responsive" id=parameter-table>
+                </div>
+                <hr>
+                <h2>Response Parameters</h2>
+                <div class="table-responsive" id=response-parameter-table>
+                </div>
+                <hr>
+                <h2>Response Data</h2>
+                <div id=api-response></div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <script data-main="js/app" src="js/require.js"></script>
+</footer>
+
+</html>

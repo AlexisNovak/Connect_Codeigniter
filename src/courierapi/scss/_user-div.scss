@@ -1,0 +1,26 @@
+.division-content{
+    margin:50px 50px 50px 50px;
+    font-size:15px;
+    text-align:justify;
+}
+
+.division-name{
+    font-size:23px;
+    text-align: justify;
+}
+
+@media screen and (max-width:400px){
+    .division-content{
+        margin:0;
+    }
+    
+    .division-content:after{
+        content:"";
+        bottom:0;
+        left:0;
+        right:0;
+        width:100%;
+        border-top:3px solid $grey;
+        height:0.5em;
+    }
+}

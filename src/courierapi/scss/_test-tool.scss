@@ -1,0 +1,62 @@
+.test-tool-wrapper{
+    position:absolute;
+    right:0;
+    width:$test-tool-width;
+    top:65px;
+    bottom:0;
+    margin:auto;
+    padding:0;
+    background:$sky-blue-dark;
+    z-index:3;
+    overflow-x:hidden;
+    @include scrollbar-style();
+    @include transition-style();
+    .test-tool{
+        margin-left:50px;
+        margin-right:50px;
+        margin-top: 50px; 
+        color:$white;
+        
+        @media screen and (max-width:400px){
+            h1{
+                font-size:23px;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+        i{
+            color:$navy-blue;
+            &.important{
+                margin-right:5px;
+                color:$light-green;
+            }
+            
+            &.optional{
+                margin-right:5px;
+                color:$light-red;
+            }
+        }
+        
+        textarea{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%;
+            color:black;
+        }
+    }
+}
+
+@media screen and (max-width:800px){
+    .test-tool-wrapper{
+        z-index:4;
+        right:-$test-tool-width;
+    }
+}
+
+@media screen and (max-width:500px){
+    .test-tool-wrapper{
+        z-index:1;
+        width:0;
+    }
+}

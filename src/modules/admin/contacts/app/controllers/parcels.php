@@ -1,0 +1,259 @@
+<?php
+
+class Parcels extends MY_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->model(array('app/parcels_model', 'account/account_details_model', 'account/account_model'));
+    }
+
+    function index($org_id) {
+        $data['is_admin'] = $this->parcels_model->is_admin($org_id);
+        $data['is_member'] = $this->parcels_model->is_member($org_id);
+        $this->load->view('app/members_list', $data);
+    }
+
+    //function to add new member to organisation
+
+    function addparcels($orgid) {
+        $memberData = json_decode(file_get_contents('php://input'));
+        $name = $memberData->name;
+        $desc = $memberData->description;
+        $result = array();
+        $user_id = (int) $memberData->Userid;
+
+        $data = array(
+            'org_id' => $orgid,
+            'display_name' => $name,
+            'description' => $desc);
+        if ($this->parcels_model->addParcelType($data)) {
+            $result['status'] = 1; //                           );
+            $result['class'] = "alert-success";
+            $result['msg'] = "New member added to this organisation";
+        } else {
+            $result['status'] = 0;
+            $result['msg'] = "Something went wrong.";
+            $result['class'] = "alert-danger";
+        }
+        echo json_encode($result);
+    }
+
+    //function to invite new member to organisation
+
+    function inviteparcels($orgid) {
+        $memberData = json_decode(file_get_contents('php://input'));
+        $result = array();
+        if (isset($memberData->email) && valid_email($memberData->email)) {
+            $email = htmlentities($memberData->email);
+            if (false) {
+                $result['status'] = 2;
+                $result['msg'] = "Already joined with this organisation";
+                $result['class'] = "alert-warning";
+            } else {
+                $email_array = explode('@', $email);
+                $fullname = $email_array[0] ? $email_array[0] : 'Anonymous';
+                $user_id = $this->account_model->create($fullname, $email, NULL, TRUE);
+                $this->account_details_model->update($user_id, array('fullname' => $fullname));
+                $data = array(
+                    'org_id' => $orgid,
+                    'user_id' => $user_id,
+                    'note' => "",
+                    'role_id' => 2, //member
+                    'status' => 'pending');
+                $this->parcels_model->addMember($data);
+                $this->load->helper('string');
+                $token = random_string('unique');
+                $data = array(
+                    "org_id" => $orgid,
+                    "email" => $email,
+                    "token" => $token,
+                    "status" => 1,
+                    "sent_by" => $this->session->userdata("user_id")
+                );
+                $this->load->model("app/invitations_model");
+                if ($this->invitations_model->addInvite($data)) {
+                    $account_details = $this->account_details_model->get_name_by_user_id($this->session->userdata('user_id'));
+                    $sender = $account_details->fullname ? $account_details->fullname : $account_details->username;
+                    $this->load->model('app/organisation_model');
+                    $organisation = $this->organisation_model->getorganisationDetails($orgid);
+                    $org_name = $organisation->name;
+                    $to = $email;
+                    $to_name = $email;
+                    $link = site_url('account/sign_up?t=' . $token);
+                    $subject = $sender . ' invited to join the organization "' . $org_name . '" on 6Connect';
+                    $message = array(
+                        'title' => 'Invitation to join the organization',
+                        'name' => $to_name,
+                        'content' => array(
+                            'You have been invited by ' . $sender . ' to join his organisation ' . $org_name . ' so that both of you can effortlessly manage your logistics needs',
+                            'Please click <a href="' . $link . '">here</a> to join now.',
+                            'No worries if you are not a member yet, we will get your started in seconds with no cost involved :)',
+                            'Why use 6Connect',
+                            '6Connect believes that delivery services nowadays are full of resource wastage, lack of information transparency and unjust to the real folks doing the real delivery works.',
+                            'We want to bring fairness and clarify to this industry and make deliveries as simple as sending a email.',
+                            'No worries if you are not a member yet, we will get your started in seconds with no cost involved :)'
+                        ),
+                        'link_title' => '',
+                        'link' => '');
+                    $mail_result = save_mail($to, $to_name, $subject, $message);
+                    $result['mail'] = $mail_result;
+                    if ($mail_result) {
+                        $result['status'] = 1;
+                        $result['msg'] = "Invitation has been sent";
+                        $result['class'] = "alert-success";
+                    } else {
+                        $result['status'] = 0;
+                        $result['msg'] = "Unable to send invitation";
+                        $result['class'] = "alert-danger";
+                    }
+                } else {
+                    $result['status'] = 0;
+                    $result['msg'] = "The invitation cannot be processed";
+                    $result['class'] = "alert-danger";
+                }
+            }
+        } else {
+            $result['status'] = 0;
+            $result['msg'] = "Provide a valid email id";
+            $result['class'] = "alert-danger";
+        }
+        echo json_encode($result, JSON_NUMERIC_CHECK);
+    }
+
+    function parcelslist_json($org_id) {
+        $perpage = '';
+        $search = '';
+        $membersData = json_decode(file_get_contents('php://input'));
+        if (isset($membersData->perpage_value)) {
+
+            $perpage = $membersData->perpage_value;
+        } else {
+            $perpage = 5;
+        }
+        if (isset($membersData->currentPage)) {
+
+            $page = $membersData->currentPage;
+        } else {
+            $page = 1;
+        }
+        if (isset($membersData->filter)) {
+            if ($membersData->filter != NULL) {
+                $search = $membersData->filter;
+            } else {
+                $search = NULL;
+            }
+        }
+        $total_result = $this->parcels_model->getmemberslist_count($org_id, $search);
+        $lastpage = ceil($total_result / $perpage);
+        if ($page > $lastpage) {
+            $page = 1;
+        }
+        $start = ($page - 1) * $perpage;
+        $result['total'] = $total_result;
+        $result['start'] = $start + 1;
+        $result['page'] = $page;
+        $result['member_detail'] = $this->parcels_model->getmemberslist_by_orgid($org_id, $perpage, $search, $start);
+        $result['current_user_id'] = $this->session->userdata('user_id');
+        $result['end'] = (int) ($start + count($result['member_detail']));
+        echo json_encode($result);
+    }
+
+    function get_detail() {
+        $postdata = file_get_contents("php://input");
+        $member_data = json_decode($postdata);
+        if (isset($member_data)) {
+            $member_detail = $this->parcels_model->get_detail_by_userid($member_data->member_id, $member_data->org_id);
+            $member_detail[0]->current_user_id = $this->session->userdata('user_id');
+            echo json_encode($member_detail, JSON_NUMERIC_CHECK);
+        }
+    }
+
+    public function update_parcels() {
+        $postdata = file_get_contents("php://input");
+        $member_data = json_decode($postdata);
+        $result = array();
+        $ctid = (int) $member_data->consignment_type_id;
+
+
+        $updatedata = array('description' => $member_data->description, 'display_name' => $member_data->display_name);
+
+        $result['update'] = $this->parcels_model->update_parcel($member_data->org_id, $ctid, $updatedata);
+
+        echo json_encode($result);
+    }
+
+    public function delete_parcels() {
+        $postdata = file_get_contents("php://input");
+        $member_data = json_decode($postdata);
+        $result = $this->parcels_model->delete_ptype($member_data->ptype_id, $member_data->org_id);
+
+        return $result;
+    }
+
+    function allparcelslist() {
+        $result = array();
+        $postdata = json_decode(file_get_contents("php://input"));
+        if (isset($postdata->search) && !empty($postdata->search)) {
+            $str = htmlentities($postdata->search);
+        } else {
+            $str = "";
+        }
+        if (isset($postdata->org_id) && !empty($postdata->org_id)) {
+            $org_id = (int) htmlentities($postdata->org_id);
+        } else {
+            $org_id = NULL;
+        }
+        $member_detail = $this->parcels_model->getallmemberslist($str, $org_id);
+        if (!$member_detail) {
+            if (valid_email($str)) {
+                $result['valid'] = TRUE;
+            } else {
+                $result['valid'] = FALSE;
+            }
+        }
+        $result['members'] = $member_detail;
+        echo json_encode($result);
+        exit();
+    }
+
+    function orgparcelslist() {
+        $postdata = json_decode(file_get_contents("php://input"));
+        if (isset($postdata->search) && !empty($postdata->search)) {
+            $str = htmlentities($postdata->search);
+        } else {
+            $str = "";
+        }
+        if (isset($postdata->org_id) && !empty($postdata->org_id)) {
+            $org_id = (int) htmlentities($postdata->org_id);
+        } else {
+            $org_id = NULL;
+        }
+        $member_detail = $this->parcels_model->getallorgmemberslist($str, $org_id);
+        echo json_encode($member_detail);
+    }
+
+    function orgparcelslistwithgroup() {
+        $postdata = json_decode(file_get_contents("php://input"));
+        if (isset($postdata->search) && !empty($postdata->search)) {
+            $str = htmlentities($postdata->search);
+        } else {
+            $str = "";
+        }
+        if (isset($postdata->org_id) && !empty($postdata->org_id)) {
+            $org_id = (int) htmlentities($postdata->org_id);
+        } else {
+            $org_id = NULL;
+        }
+        $member_detail = $this->parcels_model->getallorgmemberslistwithgroup($str, $org_id);
+        foreach ($member_detail as $member) {
+            if ($member->groupname == NULL) {
+                $member->groupname = "Not in Group";
+            }
+        }
+        echo json_encode($member_detail);
+    }
+
+}
+
+/* End of file home.php */
+/* Location: ./system/application/controllers/home.php */

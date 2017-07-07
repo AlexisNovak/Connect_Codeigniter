@@ -1,0 +1,1 @@
+ALTER TABLE `consignments` ADD `change_price` FLOAT NULL AFTER `threshold_price`;

@@ -1,0 +1,83 @@
+
+html,body {
+    height: 100%;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+}
+
+.wrapper {
+    @include transition-style();
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    padding:0;
+    margin:0;
+    font-family: 'Lato', sans-serif;
+    &.show-index{
+        .main-content{
+            @include transition-style();
+            margin-left:$sidebar-left-width;
+        }
+        .sidebar-left{
+            z-index:2;
+        }
+    }
+    
+    &.show-test-tool{
+        .main-content{
+            @include transition-style();
+            margin-right:$test-tool-width;
+        }
+        .test-tool-wrapper{
+            z-index:2;
+        }
+    }
+}
+
+
+@media screen and (max-width:800px){
+    .wrapper{
+        &.main-content{
+            z-index:1;
+        }
+        &.show-index{
+            .main-content{
+                @include transition-style();
+                margin-left:auto;
+            }
+            .sidebar-left{
+                left:0;
+            }
+        }
+        &.show-test-tool{
+            .main-content{
+                @include transition-style();
+                margin-right:auto;
+            }
+            .test-tool-wrapper{
+                right:0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:500px){
+    .wrapper{
+        &.show-index{
+            .sidebar-left{
+                @include transition-style();
+                width:100vw;
+                z-index:999;
+            }
+        }
+
+        &.show-test-tool{
+            .test-tool-wrapper{
+                @include transition-style();
+                width:100vw;
+                z-index:999;
+            }
+        }
+    }
+}

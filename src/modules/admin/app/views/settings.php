@@ -1,0 +1,1 @@
+<h2><?= lang('settings_tab')?></h2>

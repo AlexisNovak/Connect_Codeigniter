@@ -1,0 +1,23 @@
+{
+    "logo": "image/favicons.png",
+    "brand-name": "6Connect",
+    "key-name": "AuthCode",
+    "api-baseUrl": "http://connect.uat.6parcels.com/index.php/api/",
+    "doc-name": "6 Connect API Documentation",
+    "servers": [
+        {
+            "name": "Production",
+            "url": "http://connect1.uat.6parcels.com/index.php/api/"
+        }
+    ],
+    "instruction": [{
+        "division-name": "<img src=\"favicons.png\" class=\"img-introduction\"> 6Connect",
+        "division-content": ""
+    }, {
+        "division-name": "Quick-Start Guide",
+        "division-content": "To start using the API Tool, select an API from the yellow menu at the left side. Details will be displayed at the white portion of the page."
+    }, {
+        "division-name": "API Testing Tool",
+        "division-content": "API Testing tool located at the top right corner of this page is use for testing API responses. This tool displays the parameters needed and the URI for the resource. The response JSON will then be shown at the text field. If the JSON response succeeds, a green alert will be displayed.Otherwise, a warning or a danger alert will be shown."
+    }]
+}

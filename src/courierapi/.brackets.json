@@ -1,0 +1,4 @@
+{
+    // Absolute path to sass-convert
+    "bb.beautify.external.sass": "D:/Ruby22/bin/sass-convert.bat"
+}

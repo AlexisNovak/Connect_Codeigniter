@@ -1,0 +1,1 @@
+ALTER TABLE `member` ADD `is_invited` TINYINT(1) NOT NULL COMMENT '0=no 1=yes' ;

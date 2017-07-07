@@ -1,0 +1,65 @@
+.main-content{
+        @include scrollbar-style();
+    @include transition-style();
+    position:relative;
+    width:auto;
+    height:100%;
+    margin-top:65px;
+    padding-bottom:50px;
+    overflow-y:scroll;
+    overflow-x: scroll;
+    background-color:$default;
+    z-index:3;
+    .information{
+        position:relative;
+        margin-top:50px;
+        margin-right:50px;
+        margin-left:50px;
+        margin-bottom:50px;
+        color:$black;
+        
+        h1{
+            color:$navy-blue;
+            text-transform:capitalize;
+            font-size:40px;
+        }
+        
+        h2{
+            color:$navy-blue-light;        
+        }
+        
+        #method{
+            color:#87afb7;
+            padding:5px;
+        }
+        
+        h4{
+            color:#87afb7;
+        }
+        
+        p{  
+            padding:15px;
+            font-size:16px;
+        }
+    }
+    .quickstart{
+        position:relative;
+        margin-top:50px;
+        margin-right:50px;
+        margin-left:50px;
+        margin-bottom:50px;
+    }
+}
+
+@media screen and (max-width:800px){
+    .main-content{
+        z-index:1;
+    }
+}
+
+@media screen and (max-width:500px){
+    .main-content{
+        z-index:1;
+    }
+}
+

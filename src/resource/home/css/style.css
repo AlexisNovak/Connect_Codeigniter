@@ -1,0 +1,695 @@
+
+.body {
+	background: #F9F9F9;
+}
+
+a {
+	color: #133439 !important;
+}
+
+a:hover {
+	color: #144B55 !important; 
+	text-decoration: initial;
+}
+
+a.active {
+		color: #fbbd34 !important;
+}
+
+
+.header{
+		width: 100%;
+		height: 98px;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding:10px;
+		margin-bottom: 0px
+	}
+
+
+.logo {
+	float: left;
+	width:358px;
+	height:73px;
+	background: url(../images/logo.png) no-repeat;
+}
+
+.cover {
+	width: 100%;
+}
+
+
+
+/***** header *****/
+.header-btn {
+	padding: 5px 8px;
+	background: #fbbd34;
+	font-size: 16px;
+	border: solid 2px;
+	border-color: #fbbd34;
+}
+
+.list-inline {
+	margin-top: 10px;
+}
+
+.header-btn.header-login {
+	background: none;
+	border: solid 2px;
+	border-color: #fbbd34;
+}
+
+.header-btn.header-login {
+	color: #fff !important;
+}
+
+
+
+
+/***** section SignUp *****/
+#SignUp .six-container {
+	padding-top: 195px;
+}
+
+#SignUp .title {
+	width: 100%;
+	color: #f9bc34;
+	font-size: 44px;
+	margin-bottom: 20px;
+}
+
+#SignUp .subtitle{
+	color: #fff;
+	font-size: 25px;
+	margin-bottom: 38px;
+}
+
+.function-img{
+	width: 128px;
+	height: 128px;
+	border-radius: 99em;
+	background-color: #fff;
+	box-shadow:4px 4px 3px rgba(10%,10%,20%,0.5);
+	margin: 0px auto;
+	margin-bottom: 20px;
+}
+
+
+/* icon setting */
+#SignUp .fucntion-icons {
+	width: 128px;
+	height: 128px;
+	background: url(../images/SignUp_img.png) no-repeat;
+}
+
+#SignUp .icon1 {
+	background-position: 0px 0px;
+}
+
+#SignUp .icon2 {
+	background-position: -128px 0px;
+}
+
+#SignUp .icon3 {
+	background-position: -256px 0px;
+}
+
+#SignUp .icon4 {
+	background-position: -384px 0px;
+}
+/* icon setting */
+
+
+
+.function-text{
+	color: #fff;
+	font-size: 16px;
+}
+
+
+#SignUp .content {
+	margin-bottom: 60px;
+}
+
+#SignUp .sign_up_btn {
+	padding: 10px 35px;
+    background: #fbbd34;
+    font-size: 26px;
+    width: 228px;
+}
+
+
+#SignUp .learn_more {
+	padding: 10px;
+	background: #fbbd34;
+	font-size: 15px;
+	width: 118px;
+	margin-top: 30px;
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+/* arrow animation setting */
+#SignUp .arrow_down {
+	color: #fbbd34;
+}
+
+.arrow_down {
+    	font-size: 25px;
+    	width: 25px;
+    	margin-top: 8px;
+}
+.arrow_down:hover {
+	-webkit-animation: downanimation 1s infinite;
+    animation: downanimation 1s infinite;
+}
+
+@-webkit-keyframes downanimation {
+		from {margin-top: 8px;}
+    	to {margin-top: 25px;}
+}
+
+
+
+
+/***** section LearnMore *****/
+#LearnMore {
+	width: 100%;
+	background: #fbbd34;
+	padding: 30px 0;
+}
+
+#LearnMore .row {
+	margin: 0;
+}
+
+
+#LearnMore .title {
+	width: 100%;
+	color: #143338;
+	font-size: 26px;
+	margin-bottom: 46px;
+}
+
+#LearnMore .LearnMore-img {
+	width: 190px;
+	height: 135px;
+	background-color: #fbbd34;
+	margin: 0px auto;
+	margin-bottom: 20px;
+
+}
+
+
+/* icon setting */
+#LearnMore .learnMore-icons {
+	width: 190px;
+	height: 135px;
+	background: url(../images/LearnMore_img.png) no-repeat;
+}
+
+#LearnMore .icon1 {
+	background-position: 0px 0px;
+}
+
+#LearnMore .icon2 {
+	background-position: -190px 0px;
+}
+
+#LearnMore .icon3 {
+	background-position: -380px 0px;
+}
+
+#LearnMore .icon4 {
+	background-position: -570px 0px;
+}
+/* icon setting */
+
+
+#LearnMore .content {
+	margin-bottom: 50px;
+}
+
+#LearnMore .feature {
+	margin-bottom: 30px;
+}
+
+#LearnMore .learn_more {
+	padding: 10px;
+	background: #133439;
+	font-size: 15px;
+	width: 118px;
+	margin-top: 30px;
+	color: #FFFFFF;
+}
+
+#LearnMore .learn_more.more_features {
+	width: 145px;
+}
+
+
+
+/***** section Features *****/
+#Features {
+	width: 100%;
+	background: #133439;
+	padding: 50px 0 0 0;
+}
+
+#Features .container {
+	width: 100%;
+	background-color: #133439;
+}
+
+
+
+#Features .container .title {
+	width: 100%;
+	background-color: #133439;
+	border: solid 2px;
+	border-color: #fbbd34;
+	color: #fbbd34;
+	font-size: 22px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	margin-bottom: 6px;
+}
+
+
+/* temp */
+#Features .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#Features .col-md-6 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#Features .col-sm-6 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#Features .col-xs-6 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#Features .col-md-5 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#Features .col-md-2 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#Features .feature-text {
+	width: 100%;
+	height: 52px;
+	background-color: #1b4d56;
+	color: #fff;
+	font-size: 13px;
+	margin-bottom: 12px;
+	font-size: 0;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#Features .feature-text:before {
+	content: "";
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#Features .benefit-text {
+	width: 100%;
+	height: 52px;
+	background-color: #fbbd34;
+	color: #143338;
+	font-size: 13px;
+	margin-bottom: 12px;
+	font-size: 0;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#Features .benefit-text:before {
+	content: "";
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+
+#Features p.text {
+	display: inline-block;
+  	vertical-align: middle;
+  	font-size: 13px;
+}
+
+#Features p{
+	margin: 0px;
+}
+
+
+#Features .col-md-2 .triangle{
+	background-image: url(../images/arrow-img.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 52px;
+
+}
+
+#Features .col-sm-2 .triangle{
+	background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 0px;
+}
+
+
+
+/***** section Footer *****/
+
+footer .container {
+	width: 100%;
+	background: #FFFFFF;
+}
+
+footer .container .footer-logo{
+	padding: 35px 35px 0 35px;
+}
+
+footer .container .footer-links{
+	padding: 10px;
+}
+
+footer .container .footer-links .title{
+	margin: 20px 0;
+    color: #144B55;
+}
+
+
+footer h1, footer h2, footer h3, footer h4 {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+
+
+.join_6Parcels {
+    padding: 12px 15px 8px;
+    background: #144B55;
+    width: 234px;
+    color: #FFFFFF;
+    border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    margin: 20px 10px 0
+}
+
+
+
+/***** Media Query Setting *****/
+
+
+@media (max-width: 424px) {
+
+.col-xs-offset-1 {
+		margin-left: 5%;
+}
+
+
+
+#SignUp .cover {
+	height: 1408px;
+
+}
+
+
+
+#Features .feature-text {
+	margin-bottom: 0px;
+}
+
+.footer-logo .logo {
+  float:none;
+  display:block;
+  margin:0 auto 30px;
+}
+
+.header-btn {
+	padding: 5px 20px;
+}
+
+
+}
+
+@media (max-width: 543px) {
+.header{ height: 135px;
+}
+
+.logo {
+	margin-top: 18px;
+}
+
+.header .pull-right {
+	text-align: right;
+}
+
+.header-btn {
+	padding: 5px 17px;
+}
+
+.header-btn.header-login{
+	padding:5px 15px;
+}
+}
+
+
+
+
+@media (min-width: 404px) and (max-width: 420px){
+#LearnMore {
+	height: 1390px;
+}
+#Features .feature-text {
+	margin-bottom: 0px;
+}
+}
+
+
+@media (min-width: 420px) and (max-width: 454px){
+#LearnMore {
+	height: 1370px;
+}
+#Features .feature-text {
+	margin-bottom: 0px;
+}
+}
+
+
+@media (min-width: 454px) and (max-width: 507px){
+#LearnMore {
+	height: 1312px;
+}
+}
+
+@media (min-width: 424px) and (max-width: 670px){
+#SignUp .col-sm-6 .function{
+    margin-bottom: 30px;
+}
+
+#SignUp .cover {
+	height: 1493px;
+}
+
+#Features .feature-text {
+	margin-bottom: 0px;
+}
+}
+
+
+@media (min-width: 507px) and (max-width: 520px){
+#LearnMore {
+	height: 1312px;
+}
+}
+
+@media (min-width: 520px) and (max-width: 670px){
+#LearnMore {
+	height: 1256px;
+}
+
+}
+
+@media screen and (max-width: 670px){
+.footer-logo .logo {
+	float:none;
+	display:block;
+	margin:0 auto 30px;
+}
+
+ #Features .col-sm-6 .title-up {
+	margin-bottom: -3px;
+}
+
+}
+
+@media (min-width: 670px) and (max-width: 691px){
+#LearnMore {
+	height: 1256px;
+}
+}
+
+@media (min-width: 691px) and (max-width: 731px){
+#LearnMore {
+	height: 1236px;
+}
+}
+
+@media (min-width: 731px) and (max-width: 768px){
+#LearnMore {
+	height: 1200px;
+}
+
+.footer-logo {
+    float: none;
+    display: block;
+    margin: 0 auto 30px;
+}
+}
+
+
+
+@media (min-width: 670px) and (max-width: 768px){
+#SignUp .col-sm-6 .function{
+    margin-bottom: 30px;
+}
+
+#SignUp .cover {
+	height: 1432px;
+}
+
+
+@media screen and (max-width: 768px){
+.nav .logo {
+	width: 80px;
+    height: 80px;
+    background: url(http://connect1.uat.6parcels.com/resource/images/6connect-logo-heaer.png);
+    margin: 0;
+}
+
+
+#Features .feature-text {
+	margin-bottom: 0px;
+}
+
+#Features .col-md-2 .triangle{
+	background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 0px;
+
+}
+
+ .footer-logo .logo {
+      float:none;
+      display:block;
+      margin:0 auto 30px;
+ }
+
+#Features .col-sm-6 .title-up {
+	margin-bottom: -3px;
+}
+
+}
+
+
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+#SignUp .col-sm-6 .function{
+    margin-bottom: 30px;
+}
+
+#SignUp .cover {
+	height: 1033px;
+}
+
+#LearnMore {
+	height: 790px;
+}
+
+#Features .six-container {
+	width: 755px;
+}
+
+#Features .col-md-2 .triangle{
+	background-image: url(../images/arrow-img.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 52px;
+
+}
+
+}
+
+
+@media (min-width: 992px) {
+
+#SignUp .six-container {
+	width: 800px;
+}
+
+#SignUp .col-md-3 .lower{
+	margin-top:  90px;
+
+}
+
+#SignUp .cover {
+	height: 880px;
+}
+
+#LearnMore{
+	height: 564px;
+}
+
+#Features .six-container {
+	width: 800px;
+}
+
+#Features .col-md-2 .triangle{
+	background-image: url(../images/arrow-img.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 52px;
+
+}
+
+}
+
+
+
+
+
+
+
+
+

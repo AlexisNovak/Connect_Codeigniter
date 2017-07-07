@@ -1,0 +1,3236 @@
+{
+    "User-Management": [{
+        "login": {
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "uri": "courier/login",
+            "hasFileInput": false,
+            "description": "Login API is used for login courier to 6Connect system. This API requires two parameters and on success it will return the access key.",
+            "request-parameters": [{
+                "email": {
+                    "description": "Courier's registered email with 6Connect(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "password": {
+                    "description": "6 Connect password(mandatory)",
+                    "mandatory": true,
+                    "type": "password"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "message": {
+                    "description": "Message of the result",
+                    "type": "text"
+                }
+            }, {
+                "id": {
+                    "description": "id",
+                    "type": "number"
+                }
+            }, {
+                "AuthCode": {
+                    "description": "The token return by the server to be use for calling other API.",
+                    "type": "text"
+                }
+            }],
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "message": "Login success",
+                    "id": "1",
+                    "AuthCode": "MdIhDNYmtZbOT"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "msg": "Login Failed invalid email or password"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Invalid Parameter - No email"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Invalid Parameter - No password"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "get profile": {
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "uri": "courier/getprofile",
+            "hasFileInput": false,
+            "description": "Get profile API is used for get profile info of courier from 6Connect system. It only needs the Access key.",
+            "request-parameters": [],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "courier": {
+                    "description": "A courier object with its id, email, company abbreviation, description, registered address, billing address, full name, registered number, phone number, fax number, support email and whether it have been approved by the admin.",
+                    "type": "JSON Object"
+                }
+            }],
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "courier": {
+                        "courier_id": "24",
+                        "email": "test1234@test.com",
+                        "company_name": "testcompany",
+                        "url": "http://www.6parcels.com",
+                        "description": "test",
+                        "reg_address": "test",
+                        "billing_address": "test",
+                        "fullname": "test",
+                        "reg_no": "123456",
+                        "phone": "122324",
+                        "fax": "2424",
+                        "support_email": "",
+                        "is_approved": "0"
+                    }
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Check User exists": {
+            "uri": "courier/checkuserexists",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "username": {
+                    "description": "username(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "exist": {
+                    "description": "A true will be returned if user exist, otherwise a false will be returned if user don't exist.",
+                    "type": "boolean"
+                }
+            }],
+            "description": "Check user exists API is used for check the specific user name whether it exists or not. This API requires one parameter.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "exists": true
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "exists": false
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "reset access key": {
+            "uri": "courier/resetaccesskey",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "A new token will be returned.",
+                    "type": "text"
+                }
+            }],
+            "description": "Reset access key API is used for reset the current access key. It only needs the access key and return new access key generated from the 6Connect system.",
+            "response": [{
+
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "zhxsKkwHTB1Yg"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "List statuses": {
+            "uri": "courier/liststatuses",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "statuses": {
+                    "description": "An JSON Array of status object with status_id and the name to represent the id.",
+                    "type": "JSON Array"
+                }
+            }],
+            "description": "List statuses API is used for list all statuses used in 6Connect system. This API requires no parameters.",
+            "response": [{
+                    "header": {
+                        "Content-Type": "application/json",
+                        "Content-Encoding": "gzip"
+                    },
+                    "json": {
+                        "code": 0,
+                        "statuses": [{
+                                "status_id": "1",
+                                "display_name": "Accepted"
+                        },
+                            {
+                                "status_id": "7",
+                                "display_name": "Draft"
+                        },
+                            {
+                                "status_id": "8",
+                                "display_name": "Courier Informed"
+                        },
+                            {
+                                "status_id": "9",
+                                "display_name": "Getting Quotes"
+                        }]
+                    }
+                },
+                {
+                    "header": {
+                        "Content-Type": "application/json",
+                        "Content-Encoding": "gzip"
+                    },
+                    "json": {
+                        "code": 999,
+                        "message": "No Access Token Found"
+                    }
+                }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 6
+            }
+        }
+            }],
+    "Courier-Management": [{
+        "Register Courier": {
+            "uri": "courier/register",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "email": {
+                    "description": "Email address of courier (mandatory)",
+                    "mandatory": true,
+                    "type": "email"
+                }
+			}, {
+                "name": {
+                    "description": "Courier display name (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "password": {
+                    "description": "6Connect password (mandatory)",
+                    "mandatory": true,
+                    "type": "password"
+                }
+			}, {
+                "url": {
+                    "description": "The 6parcels URL of courier",
+                    "mandatory": true,
+                    "type": "url"
+                }
+			}, {
+                "description": {
+                    "description": "Description about the courier(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token of current session.",
+                    "type": "text"
+                }
+            }],
+            "description": "This API requires 4 mandatory parameters - email, name, password, and description.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "zhxsKkwHTB1Yg"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No email"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No display name"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No password"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No 6parcels URL"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - Already Registered Email"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 5,
+                "no-token": 6
+            }
+        },
+        "update courier": {
+            "uri": "courier/update",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "company_name": {
+                    "description": "Company name of the courier (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "url": {
+                    "description": "The 6parcels URL of the courier(mandatory)",
+                    "mandatory": true,
+                    "type": "url"
+                }
+			}, {
+                "description": {
+                    "description": "Description about the courier(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "reg_address": {
+                    "description": "Register address of the courier(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "billing_address": {
+                    "description": "Billing address of the courier(mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "fullname": {
+                    "description": "The fullname of courier (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "reg_no": {
+                    "description": "Register number of the courier",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "phone": {
+                    "description": "Phone number of the courier",
+                    "mandatory": false,
+                    "type": "number"
+                }
+			}, {
+                "fax": {
+                    "description": "Fax number of the courier",
+                    "mandatory": false,
+                    "type": "number"
+                }
+			}, {
+                "support_email": {
+                    "description": "Help-line email address of the courier",
+                    "mandatory": false,
+                    "type": "email"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result code of the request(Success is 0)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Your token for your session",
+                    "type": "text"
+                }
+            }],
+            "description": "Update courier API is used for update existing courier data in 6Connect system. ",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "zhxsKkwHTB1Yg"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "list courier services": {
+            "uri": "courier/listservices",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the request(Success for 0)",
+                    "type": "number"
+                }
+            }, {
+                "services": {
+                    "description": "A JSON array of \"service\" JSON Object. The \"service\" JSON Object contains the id,service_id,display_name,service_type,price,start_time,end_time,week_0 to week_6, origin, destination, description, threshold_price, is_for_bidding, status, org-Status, courier_id, auto_approve,is_public parameters",
+                    "type": "JSON Array"
+                }
+            }],
+            "description": "List services API is used for list currently added services to 6Connect System. It only needs the access key.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "services": [{
+                        "id": "68",
+                        "service_id": "9898",
+                        "org_id": "0",
+                        "display_name": "service name",
+                        "service_type": "distance",
+                        "price": "0",
+                        "start_time": "10:00:00",
+                        "end_time": "22:00:00",
+                        "week_0": "0",
+                        "week_1": "1",
+                        "week_2": "1",
+                        "week_3": "0",
+                        "week_4": "0",
+                        "week_5": "0",
+                        "week_6": "0",
+                        "origin": "",
+                        "destination": "",
+                        "description": "",
+                        "threshold_price": "0",
+                        "is_for_bidding": "1",
+                        "status": "1",
+                        "org_status": "1",
+                        "courier_id": "24",
+                        "auto_approve": "0",
+                        "is_public": "0"
+             }]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Check company exists": {
+            "uri": "courier/checkcompanyexists",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "company_id": {
+                    "description": "organisation ID which you have to check whether exist or not. (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the request(Success for 0)",
+                    "type": "number"
+                }
+            }, {
+                "exists": {
+                    "description": "True if company exist",
+                    "type": "boolean"
+                }
+            }, {
+                "name": {
+                    "description": "Name of the organisation",
+                    "type": "text"
+                }
+            }],
+            "description": "Check company exists API is used for check the specific organisation whether it exists or not. This API requires one parameter.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "exists": true,
+                    "name": "Org1"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        }
+            }],
+    "Job-Management": [{
+        "list jobs": {
+            "uri": "courier/listjobs",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "company": {
+                    "description": "Filter results to jobs from a specific company by company name/ oraganisation name",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "username": {
+                    "description": "Filter results to jobs from a specific user by username",
+                    "mandatory": false,
+                    "type": "name"
+                }
+			}, {
+                "search": {
+                    "description": "Search string to search in public order ID, username, company name, or order details",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "collection_address": {
+                    "description": "String to search in collection address",
+                    "mandatory": false,
+                    "type": "type"
+                }
+			}, {
+                "delivery_address": {
+                    "description": "String to search in delivery address",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "collection_date_from": {
+                    "description": "Time to filter jobs having collection time starts later than provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+			}, {
+                "collection_date_to": {
+                    "description": "Time to filter jobs having collection time within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+			}, {
+                "delivery_date_from": {
+                    "description": "Date to filter jobs having delivery date starts later than provided.",
+                    "mandatory": false,
+                    "type": "date"
+                }
+			}, {
+                "delivery_date_to": {
+                    "description": "Date to filter jobs having delivery date within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+			}, {
+                "delivery_time_from": {
+                    "description": "Time to filter jobs having delivery time starts later than provided time.",
+                    "mandatory": false,
+                    "type": "time"
+                }
+			}, {
+                "delivery_time_to": {
+                    "description": "Time to filter jobs having delivery time within provided.",
+                    "mandatory": false,
+                    "type": "time"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result code of request(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "jobs": {
+                    "description": "JSON Array of \"job\" JSON Object. Each \"job\" contains id,public_id,display_name,username,company_name,height,breadth,length,volume,weight,collection_address,crestrict,collection_date_from,collection_time_from,collection_date_to,collection_time_to,delivery_date_from,delivery_time_from,delivery_date_to,delivery_time_to,collection_country,delivery_address,delivery_post_code,delivery_country,drestrict,collection_post_code,created_date",
+                    "type": "JSON Array"
+                }
+            }],
+            "description": "List jobs API is used for list jobs that are available for bidding. This list includes jobs placed for open bidding and jobs from organisation in which you are a pre-approved courier. This API consists of many parameters to filter the list, but no one is mandatory.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "jobs": [
+                        {
+                            "id": "344",
+                            "public_id": "41732171161509",
+                            "display_name": "Document",
+                            "username": "shawn cheok rui xiang",
+                            "company_name": null,
+                            "height": "0",
+                            "breadth": "0",
+                            "length": "0",
+                            "volume": "0",
+                            "weight": "0",
+                            "collection_address": "RuiFang District  RuiHou Road",
+                            "crestrict": "0",
+                            "collection_date_from": "23-02-2016",
+                            "collection_time_from": "12:58 PM",
+                            "collection_date_to": "24-02-2016",
+                            "collection_time_to": "12:00 AM",
+                            "delivery_date_from": "25-02-2016",
+                            "delivery_time_from": "12:00 AM",
+                            "delivery_date_to": "26-02-2016",
+                            "delivery_time_to": "12:00 AM",
+                            "collection_country": "Taiwan",
+                            "delivery_address": "Di Hua Street",
+                            "delivery_post_code": "123456",
+                            "delivery_country": "Singapore",
+                            "drestrict": "0",
+                            "collection_post_code": "123451",
+                            "created_date": "23 Feb 2016 06:07 AM"
+		},
+                        {
+                            "id": "343",
+                            "public_id": "78779919437209",
+                            "display_name": "Document",
+                            "username": "shawn cheok rui xiang",
+                            "company_name": null,
+                            "height": "0",
+                            "breadth": "0",
+                            "length": "0",
+                            "volume": "0",
+                            "weight": "0",
+                            "collection_address": "RuiFang District  RuiHou Road",
+                            "crestrict": "0",
+                            "collection_date_from": "23-02-2016",
+                            "collection_time_from": "12:58 PM",
+                            "collection_date_to": "24-02-2016",
+                            "collection_time_to": "12:00 AM",
+                            "delivery_date_from": "25-02-2016",
+                            "delivery_time_from": "12:00 AM",
+                            "delivery_date_to": "26-02-2016",
+                            "delivery_time_to": "12:00 AM",
+                            "collection_country": "Taiwan",
+                            "delivery_address": "Di Hua Street",
+                            "delivery_post_code": "123456",
+                            "delivery_country": "Singapore",
+                            "drestrict": "0",
+                            "collection_post_code": "123451",
+                            "created_date": "23 Feb 2016 06:03 AM"
+		},
+                        {
+                            "id": "342",
+                            "public_id": "81573628294619",
+                            "display_name": "Document",
+                            "username": "shawn cheok rui xiang",
+                            "company_name": null,
+                            "height": "0",
+                            "breadth": "0",
+                            "length": "0",
+                            "volume": "0",
+                            "weight": "0",
+                            "collection_address": "RuiFang District  RuiHou Road",
+                            "crestrict": "0",
+                            "collection_date_from": "23-02-2016",
+                            "collection_time_from": "12:58 PM",
+                            "collection_date_to": "24-02-2016",
+                            "collection_time_to": "12:00 AM",
+                            "delivery_date_from": "25-02-2016",
+                            "delivery_time_from": "12:00 AM",
+                            "delivery_date_to": "26-02-2016",
+                            "delivery_time_to": "12:00 AM",
+                            "collection_country": "Taiwan",
+                            "delivery_address": "Di Hua Street",
+                            "delivery_post_code": "123456",
+                            "delivery_country": "Singapore",
+                            "drestrict": "0",
+                            "collection_post_code": "123451",
+                            "created_date": "23 Feb 2016 05:04 AM"
+		}
+	]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "get job detail": {
+            "uri": "courier/getjobdetail",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID(mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "jobs": {
+                    "description": "JSON Array of \"job\" JSON Object",
+                    "type": "JSON Array"
+                }
+            }],
+            "description": "Get job detail API is used for get all details of a job. This API requires only one parameter.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "jobs": {
+                        "consignment_id": "193",
+                        "private_id": "",
+                        "public_id": "32683045075475",
+                        "org_id": "0",
+                        "c_group_id": "568e558123a9b",
+                        "is_read": "0",
+                        "consignment_type_id": "2",
+                        "description": "",
+                        "price": "0",
+                        "customer_id": "1",
+                        "service_id": "67",
+                        "is_service_assigned": "1",
+                        "is_for_bidding": "0",
+                        "is_open_bid": "0",
+                        "bidding_deadline": null,
+                        "is_confirmed": "0",
+                        "quantity": "1",
+                        "is_bulk": "0",
+                        "length": "0",
+                        "breadth": "0",
+                        "height": "0",
+                        "volume": "0",
+                        "weight": "0",
+                        "collection_address": "#08-41 335 Woodlands St 32",
+                        "is_c_restricted_area": "0",
+                        "collection_date": "2016-01-08 10:00:00",
+                        "collection_date_to": "2016-01-08 13:00:00",
+                        "collection_country": "sg",
+                        "collection_timezone": "Asia/Singapore",
+                        "delivery_address": "#03-39 33 Ubi Ave 3",
+                        "is_d_restricted_area": "0",
+                        "delivery_post_code": "639339",
+                        "delivery_country": "sg",
+                        "delivery_timezone": "Asia/Singapore",
+                        "delivery_date": "2016-01-09 10:00:00",
+                        "delivery_date_to": "2016-01-09 17:00:00",
+                        "delivery_contact_name": "Jason Tey",
+                        "delivery_contact_email": "jason.tey@kaisquare.com",
+                        "delivery_contact_phone": "98776531",
+                        "delivery_company_name": "",
+                        "created_date": "2016-01-07 17:39:37",
+                        "is_deleted": "0",
+                        "deleted_date": null,
+                        "created_user_id": "1",
+                        "collection_post_code": "730335",
+                        "collection_contact_name": "Sean Seah",
+                        "collection_contact_number": "96471471",
+                        "collection_contact_email": "sean.seah@kaisquare.com",
+                        "collection_company_name": "",
+                        "send_notification_to_consignee": "1",
+                        "consignment_status_id": "8",
+                        "remarks": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        "ref": null,
+                        "tags": null,
+                        "picture": null,
+                        "display_name": "Extra Small",
+                        "from_country": "Singapore",
+                        "to_country": "Singapore",
+                        "from_zone": "UTC+8",
+                        "to_zone": "UTC+8",
+                        "consignment_status": "Courier Informed"
+                    }
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 5,
+                "no-token": 6
+            }
+        },
+        "List won jobs": {
+            "uri": "courier/listwonjob",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "username": {
+                    "description": "Filter results to jobs from a specific company by company name/organisation name.",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "search": {
+                    "description": "Search string to search in public order ID, username, company name, or order details",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "collection_address": {
+                    "description": "String to search in public collection address",
+                    "mandatory": false,
+                    "type": "text"
+                }
+            }, {
+                "delivery_address": {
+                    "description": "String to search in delivery address",
+                    "mandatory": false,
+                    "type": "text"
+                }
+            }, {
+                "collection_date_from": {
+                    "description": "Date to filter jobs having collcetion date starts later than provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "collection_date_to": {
+                    "description": "Date to filter jobs having collection date within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "collection_time_from": {
+                    "description": "Time to filter jobs having collection time starts later than provided",
+                    "mandatory": false,
+                    "type": "time"
+                }
+            }, {
+                "collection_time_to": {
+                    "description": "Time to filter jobs having collection time within provided",
+                    "mandatory": false,
+                    "type": "time"
+                }
+            }, {
+                "delivery_date_from": {
+                    "description": "Date to filter jobs having delivery date starts later than provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "delivery_date_to": {
+                    "description": "Date to filter jobs having delivery date within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "delivery_time_from": {
+                    "description": "Time to filter jobs having delivery time starts later than provided",
+                    "mandatory": false,
+                    "type": "time"
+                }
+            }, {
+                "delivery_time_to": {
+                    "description": "Time to filter jobs having delivery time within provided",
+                    "mandatory": false,
+                    "type": "time"
+                }
+            }, {
+                "status_id": {
+                    "description": "Job status ID to filter by status",
+                    "mandatory": false,
+                    "type": "number"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the request(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "jobs": {
+                    "description": "Array of the Job JSON Object",
+                    "type": "JSON Array"
+                }
+            }],
+            "description": "List won jobs API is used for list jobs that are awarded to the courier either by direct assign or by won bid.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "jobs": [{
+                        "id": "194",
+                        "public_id": "01889398100259",
+                        "private_id": "234234234",
+                        "display_name": "Document",
+                        "username": "Livin",
+                        "company_name": "Organisation A",
+                        "height": "0",
+                        "breadth": "0",
+                        "length": "0",
+                        "volume": "0",
+                        "weight": "0",
+                        "collection_address": "abcgh gh",
+                        "is_for_bidding": "0",
+                        "is_confirmed": "1",
+                        "price": "12",
+                        "collection_date_from": "12-01-2016",
+                        "collection_time_from": "10:00 AM",
+                        "collection_date_to": "12-01-2016",
+                        "collection_time_to": "01:00 PM",
+                        "delivery_date_from": "14-01-2016",
+                        "delivery_time_from": "10:00 AM",
+                        "delivery_date_to": "14-01-2016",
+                        "delivery_time_to": "05:00 PM",
+                        "collection_country": "India",
+                        "consignment_status": "Collecting",
+                        "delivery_address": "addr1 addr2",
+                        "delivery_post_code": "12345",
+                        "delivery_country": "India",
+                        "delivery_contact_name": "AAA",
+                        "delivery_contact_phone": "999999999999",
+                        "collection_post_code": "456456",
+                        "collection_contact_name": "asdf",
+                        "collection_contact_number": "456456456",
+                        "service_name": "test with origin",
+                        "created_date": "12 Jan 2016 10:44 AM"
+            }]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "List job messages": {
+            "uri": "courier/listjobmessages",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "messages": {
+                    "description": "All message from organisation",
+                    "type": "text"
+                }
+            }],
+            "description": "List job messages API is used for list all the messages related to a specific job. This API requires only one parameter. This will return all the comments by the person who added this order and all questions by you as well as all the responded questions from other couriers.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "messages": [{
+                        "message_id": "51",
+                        "username": "Livin",
+                        "company_name": "Organisation A",
+                        "by_you": "1",
+                        "question": "test",
+                        "reply": null,
+                        "created_date": "2016-01-12 15:53:02",
+                        "updated_date": null
+            }, {
+                        "message_id": "50",
+                        "username": "Livin",
+                        "company_name": "Organisation A",
+                        "by_you": "1",
+                        "question": "tyrtyrtyrty",
+                        "reply": null,
+                        "created_date": "2016-01-12 15:52:50",
+                        "updated_date": null
+            }]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Leave a message": {
+            "uri": "courier/leavejobmessages",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}, {
+                "message": {
+                    "description": "The actual text you want to send. (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of Request(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Your current token.",
+                    "type": "text"
+                }
+            }],
+            "description": "Leave a message API is used for send message to 6Connect system regarding a specific job. This API requires two parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No message"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No job ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 3
+            }
+        },
+        "Acknowledge Job": {
+            "uri": "courier/acknowledgejob",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}, {
+                "consignment_id": {
+                    "description": "The consignment id in courier’s own system, so that company is able to inquire the delivery status in courier’s system (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+            }, {
+                "price": {
+                    "description": "price for the job (mandatory if its an directly assigned job)",
+                    "mandatory": false,
+                    "type": "number"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of Request(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Your current token.",
+                    "type": "text"
+                }
+            }],
+            "description": "Acknowledge job API is used to acknowledge the job, when courier successfully bid a job or a job directly assigned to courier. This API consists of three parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Adjust Price": {
+            "uri": "courier/adjustprice",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}, {
+                "remark": {
+                    "description": "The reason of changing the price (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+            }, {
+                "price": {
+                    "description": "price for the job (mandatory if its an directly assigned job)",
+                    "mandatory": false,
+                    "type": "number"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of Request(0 for Success)",
+                    "type": "number"
+                }
+            }],
+            "description": "Adjust price API is used for submit a new price for a won job, but the price needs to be approved by company. If courier sent the price which is same as previous, it will return API_FAILED. This API consists of three parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Failed to adjust price"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No job ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No remarks"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No price"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 5
+            }
+        },
+        "List price history": {
+            "uri": "courier/listpricehistory",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}],
+            "response-parameters": [],
+            "description": "List price history API is used for list the price that courier submitted before. This API requires only the job_id as parameter.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "records": [
+                        {
+                            "price": "123",
+                            "remarks": "",
+                            "is_approved": "1",
+                            "created_date": "2016-03-13 15:20:24",
+                            "approved_date": "2016-03-13 15:21:05"
+                    }
+                ]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Failed to retrieve price history"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No job ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 3
+            }
+        },
+        "Submit Job track": {
+            "uri": "courier/submitjobstate",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}, {
+                "status_code": {
+                    "description": "The status code (mandatory)",
+                    "mandatory": true,
+                    "additional info": "status_code can only be the following at the moment: request must set the codes correct or it will be an error.<br><ul><li>Collecting - 101</li><li>Collected - 102</li><li>In-Transit - 301</li><li>Delivered - 401</li><li>Failed Delivery - 501</li><li>Others - 601</li></ul>",
+                    "type": "number"
+                }
+			}, {
+                "status_name": {
+                    "description": "The display name of status (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}, {
+                "description": {
+                    "description": "The current status description that needs company to know (mandatory)",
+                    "mandatory": true,
+                    "type": "text"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "descripton": "Result of the Request (0 for Success)",
+                    "type": "number"
+                }
+            }],
+            "description": "Submit job track API is used for submit current job status to 6Connect, then company is able to track the actual delivery status. These update will update the order delivery status.<br>Collecting - 101 <br>Collected - 102<br>In-Transit - 301<br>Delivered - 401<br>Failed Delivery - 501<br>Others",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "description": "Result for Request(0 for Success)"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Failed to submit job state. No permission"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No job ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No status name"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - No status code"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid Input - Unknown status code"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 6
+            }
+        }
+    }],
+    "Bidding-Management": [{
+        "bid for job": {
+            "uri": "courier/bidforjob",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "job_id": {
+                    "description": "job ID(mandatory)",
+                    "mandatory": true
+                }
+			}, {
+                "price": {
+                    "description": "bidding price(mandatory)",
+                    "mandatory": true
+                }
+			}, {
+                "service_id": {
+                    "description": "Service using which you are bidding (mandatory)",
+                    "mandatory": true
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token of your current session.",
+                    "type": "text"
+                }
+            }],
+            "description": "Bid for job API is used for bidding of current open job/order in the connect platform. Courier may submit a bid multiple times as long as the job is still open.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No job ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "You can't bid this job"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 2,
+                "no-token": 3
+            }
+        },
+        "withdraw bid": {
+            "uri": "courier/withdrawbid",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "bid_id": {
+                    "description": "bid ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token of your current session.",
+                    "type": "text"
+                }
+            }],
+            "description": "Withdraw bid API is used to give up an existing bid, company won’t see your price in the order. This API only requires the bid ID which you have to withdraw.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "List history bidding jobs": {
+            "uri": "courier/listbidhistory",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "company": {
+                    "description": "Filter results to jobs from a specific company by company name/ organisation name",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "username": {
+                    "description": "Filter results to jobs from a specific user by username",
+                    "mandatory": false,
+                    "type": "text"
+                }
+			}, {
+                "collection_address": {
+                    "description": "String to search in collection address",
+                    "mandatory": false,
+                    "type": "text"
+                }
+            }, {
+
+                "delivery_address": {
+                    "description": "String to search in delivery address",
+                    "mandatory": false,
+                    "type": "text"
+                }
+            }, {
+                "collection_date_from": {
+                    "description": "Date to filter jobs having collection date starts later than provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "collection_date_to": {
+                    "description": " Date to filter jobs having collection date within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "delivery_date_from": {
+                    "description": "Date to filter jobs having delivery date starts later than provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "delivery_date_to": {
+                    "description": "Date to filter jobs having delivery date within provided",
+                    "mandatory": false,
+                    "type": "date"
+                }
+            }, {
+                "delivery_time_to": {
+                    "description": "Time to filter jobs having delivery time within provided",
+                    "mandatory": false,
+                    "type": "time"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of request(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "jobs": {
+                    "description": "An array of JSON Object",
+                    "type": "JSONArray"
+                }
+            }],
+            "description": "List history bidding jobs API is used for retrieve all bids from a courier stored in the platform. This API has several parameters to filter the return list.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "jobs": [
+                        {
+                            "id": "79",
+                            "username": "livin",
+                            "company_name": "test123",
+                            "bid_id": "6",
+                            "service_id": "JT101",
+                            "bidding_price": "7.5",
+                            "is_approved": "0",
+                            "status": "1",
+                            "display_name": "JT Express Delivery"
+		},
+                        {
+                            "id": "223",
+                            "username": "Mark Teo",
+                            "company_name": "Test Mark",
+                            "bid_id": "10",
+                            "service_id": "JTSUPER123",
+                            "bidding_price": "123333",
+                            "is_approved": "1",
+                            "status": "1",
+                            "display_name": "JT Super Express (90min)"
+		},
+                        {
+                            "id": "222",
+                            "username": "Mark Teo",
+                            "company_name": "Test Mark",
+                            "bid_id": "11",
+                            "service_id": "JTSUPER123",
+                            "bidding_price": "10",
+                            "is_approved": "1",
+                            "status": "1",
+                            "display_name": "JT Super Express (90min)"
+		},
+                        {
+                            "id": "228",
+                            "username": "Mark Teo",
+                            "company_name": "Test Mark",
+                            "bid_id": "13",
+                            "service_id": "JT101",
+                            "bidding_price": "2",
+                            "is_approved": "0",
+                            "status": "2",
+                            "display_name": "JT Express Delivery"
+		},
+                        {
+                            "id": "342",
+                            "username": "shawn cheok rui xiang",
+                            "company_name": null,
+                            "bid_id": "36",
+                            "service_id": "EWS0001",
+                            "bidding_price": "1337",
+                            "is_approved": "1",
+                            "status": "1",
+                            "display_name": "Next Business Day delivery (10am - 6pm) - Small Parcel"
+		},
+                        {
+                            "id": "3171",
+                            "username": "cheok jia chin",
+                            "company_name": null,
+                            "bid_id": "38",
+                            "service_id": "123",
+                            "bidding_price": "123",
+                            "is_approved": "1",
+                            "status": "1",
+                            "display_name": "Latest Test"
+		},
+                        {
+                            "id": "3172",
+                            "username": "cheok jia chin",
+                            "company_name": null,
+                            "bid_id": "39",
+                            "service_id": "123",
+                            "bidding_price": "555",
+                            "is_approved": "1",
+                            "status": "1",
+                            "display_name": "Latest Test"
+		},
+                        {
+                            "id": "3174",
+                            "username": "cheok jia chin",
+                            "company_name": null,
+                            "bid_id": "40",
+                            "service_id": "ID 0001",
+                            "bidding_price": "123",
+                            "is_approved": "0",
+                            "status": "2",
+                            "display_name": "Parcel Delivery DTC"
+		},
+                        {
+                            "id": "3174",
+                            "username": "cheok jia chin",
+                            "company_name": null,
+                            "bid_id": "41",
+                            "service_id": "ID 0001",
+                            "bidding_price": "111",
+                            "is_approved": "0",
+                            "status": "1",
+                            "display_name": "Parcel Delivery DTC"
+		}
+	]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Bid service request": {
+            "uri": "courier/bidservicerequest",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "req_id": {
+                    "description": "Request ID (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+			}, {
+                "service_id": {
+                    "description": "Service using which you are bidding (mandatory)",
+                    "mandatory": true,
+                    "type": "number"
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token for current session.",
+                    "type": "Text"
+                }
+            }, {
+                "bid_id": {
+                    "description": "ID of your bidding",
+                    "type": "number"
+                }
+            }],
+            "description": "Bid service request API is used for bid for a current open service request in the connect platform. Courier may submit a bid multiple times as long as the request is still open.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY",
+                    "bid_id": 57
+                }
+                }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No request ID"
+                }
+                }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - Invalid service ID"
+                }
+                }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No service ID"
+                }
+                }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+                }],
+            "tool-response": {
+                "success": 0,
+                "failure": 2,
+                "no-token": 4
+            }
+        },
+        "Withdraw service request bid": {
+            "uri": "courier/withdrawservicerequestbid",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "bid_id": {
+                    "description": "bid ID (mandatory)",
+                    "mandatory": true
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token for current session.",
+                    "type": "Text"
+                }
+            }],
+            "description": "Withdraw bid API is used to give up an existing bid, company won’t see your bid no longer. This API only requires the bid ID which you have to withdraw.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - no bid ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "List service request bids": {
+            "uri": "courier/listservicerequestbids",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "bids": {
+                    "description": "JSONArray that contains JSON \"bids\" Object",
+                    "type": "JSONArray"
+                }
+            }],
+            "description": "List service request bids API is used for retrieve all service request bids from a courier stored in the platform.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "bids": [
+                        {
+                            "bid_id": "57",
+                            "req_id": "28",
+                            "service": "Latest Test",
+                            "status": "0"
+                  },
+                        {
+                            "bid_id": "28",
+                            "req_id": "29",
+                            "service": "JT Express Delivery",
+                            "status": "1"
+		},
+                        {
+                            "bid_id": "27",
+                            "req_id": "30",
+                            "service": "JT Express Delivery",
+                            "status": "1"
+		},
+                        {
+                            "bid_id": "29",
+                            "req_id": "35",
+                            "service": "JT Express Delivery",
+                            "status": "0"
+		},
+                        {
+                            "bid_id": "30",
+                            "req_id": "37",
+                            "service": "JT Express Delivery",
+                            "status": "2"
+		},
+                        {
+                            "bid_id": "32",
+                            "req_id": "38",
+                            "service": "JT Super Express (90min)",
+                            "status": "2"
+		},
+                        {
+                            "bid_id": "33",
+                            "req_id": "39",
+                            "service": "Hamper Service (1-time)",
+                            "status": "2"
+		},
+                        {
+                            "bid_id": "40",
+                            "req_id": "44",
+                            "service": "Parcel Delivery DTC",
+                            "status": "2"
+		},
+                        {
+                            "bid_id": "42",
+                            "req_id": "45",
+                            "service": "Ecommerce delivery",
+                            "status": "2"
+		}
+	]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "List request messages": {
+            "uri": "courier/listrequestmessages",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [
+                {
+                    "req_id": {
+                        "description": "Request ID (mandatory)",
+                        "mandatory": true,
+                        "type": "number"
+                    }
+                }
+            ],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result for Request (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "messages": {
+                    "description": "JSON Array of message JSON Object",
+                    "type": "JSONArray"
+                }
+            }],
+            "description": "List request messages API is used for list all the messages related to a specific service request. This API requires only one parameter. This will return all the comments by the admin member who added this request and all questions by you as well as all the responded questions from other couriers.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "messages": [
+                        {
+                            "message_id": "35",
+                            "courier_id": "28",
+                            "request_id": "57",
+                            "msg": "test message",
+                            "reply": null,
+                            "type": "message",
+                            "courier": "JT Express",
+                            "by_you": "1",
+                            "created_date": "2016-03-02 09:23:58",
+                            "updated_date": "0000-00-00 00:00:00"
+		          }
+	           ]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "messages": "No messages there"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No request ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "Leave a message for service request": {
+            "uri": "courier/leaverequestmessage",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [
+                {
+                    "req_id": {
+                        "description": "Request ID (mandatory)",
+                        "mandatory": true,
+                        "type": "number"
+                    }
+                }, {
+                    "message": {
+                        "description": "The actual text you want to send. (mandatory)",
+                        "mandatory": true,
+                        "type": "text"
+                    }
+                }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the Request (0 for Success)",
+                    "type": "number"
+                }
+                }, {
+                "access_key": {
+                    "description": "Token of current session",
+                    "type": "text"
+                }
+                }],
+            "description": "Leave a message for service request API is used for send message to 6Connect system regarding a specific service request. This API requires two parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No request ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No message"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 3
+            }
+        },
+        "List requests for pre-approved services": {
+            "uri": "courier/listepreservicerequests",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "search": {
+                    "description": "Search string for service name",
+                    "type": "text",
+                    "mandatory": false
+                }
+                }],
+            "response-parameters": [],
+            "description": "List requests for pre-approved services API is used list the requests from different organisations for pre-approved services. This API requires only the access key. You can pass search string as a parameter for filtering.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "requests": [
+                        {
+                            "request_id": "71",
+                            "s_id": "54",
+                            "service": "Next Business Day delivery (10am - 6pm) - Small Parcel",
+                            "service_id": "EWS0001",
+                            "organisation": "PHOKKI"
+                    }
+                ],
+                    "access_key": "QiZjmSxvykbeh"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "Approve request for pre-approved services": {
+            "uri": "courier/approvepreservice",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "description": "Approve request for pre-approved services API is used for assign a service to an organisation based on the request from organisation admin member. This action will reject all other requests for this particular service from other organisations automatically. This API requires one parameter.",
+            "request-parameters": [{
+                "req_id": {
+                    "description": "Request ID (mandatory)",
+                    "type": "number",
+                    "mandatory": true
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "message": {
+                    "description": "Result of approval.",
+                    "type": "text"
+                }
+            }],
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "msg": "Request approved",
+                    "access_key": "KWxd4QNVY7eh9"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Failed to approve"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "Reject request for pre-approved services": {
+            "uri": "courier/rejectpreservice",
+            "hasFileInput": false,
+            "method": "POST",
+            "content-type": "application/x-www-form-urlencoded",
+            "description": "Reject request for pre-approved services API is used for reject request from an organisation admin member to add a service as pre-approved service for their organisation. This API requires two parameters.",
+            "request-parameters": [{
+                "req_id": {
+                    "description": "Request ID (mandatory)",
+                    "type": "number",
+                    "mandatory": true
+                }
+			}, {
+                "remarks": {
+                    "description": "Reason for reject request",
+                    "type": "text",
+                    "mandatory": false
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "msg": {
+                    "description": "Message of the result",
+                    "type": "text"
+                }
+            }, {
+                "access_key": {
+                    "description": "Your token",
+                    "type": "text"
+                }
+            }],
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "msg": "Request rejected",
+                    "access_key": "wOnxu3yo81pZY"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No request ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "Update Proof of Delivery": {
+            "uri": "courier/updatePOD",
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "description": "Update Proof of Delivery API is to update any files related to the POD. If the image is a signature, it should be indicated. This API requires five parameters.",
+            "hasFileInput": true,
+            "request-parameters": [{
+                "consignment_id": {
+                    "description": "Consignment ID (mandatory)",
+                    "type": "number",
+                    "mandatory": true
+                }
+			}, {
+                "pod_image": {
+                    "description": "Image that is going to attach through api , this will automatically generated when you choose a file to upload. (Mandatory)",
+                    "type": "text",
+                    "target": "b64",
+                    "mandatory": true
+                }
+			}, {
+                "filename": {
+                    "description": "Original file name. This will automatically be filled when you choose a file to upload.",
+                    "type": "text",
+                    "target": "filename",
+                    "mandatory": true
+                }
+            }, {
+                "is_sign": {
+                    "description": "Flag to indicate signature or other image (mandatory)",
+                    "type": "boolean",
+                    "mandatory": true
+                }
+            }, {
+                "remarks": {
+                    "description": "Any remarks",
+                    "type": "text",
+                    "mandatory": false
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "message": {
+                    "description": "Message of the result",
+                    "type": "text"
+                }
+            }, {
+                "id": {
+                    "description": "id",
+                    "type": "number"
+                }
+            }, {
+                "AuthCode": {
+                    "description": "The token return by the server to be use for calling other API.",
+                    "type": "text"
+                }
+            }],
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "msg": "POD updated",
+                    "access_key": "QiZjmSxvykbeh"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 100,
+                    "message": "Failed to update POD. No permission"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No consignment ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No filename"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 4
+            }
+        }
+    }],
+    "Service-Management": [{
+        "push services": {
+            "uri": "courier/pushservices",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "multipleSubmit": true,
+            "arrayName":"services",
+            "request-parameters": [{
+                "service_id": {
+                    "description": "Service ID in 6Parcels (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+             }, {
+                "company": {
+                    "description": "6Connect organisation ID, set this parameter if this service need to be assigned to specific organisation. If this is not provided, it means the service is meant for bidding purposes. (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+                     }, {
+                "display_name": {
+                    "description": "Service name (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+                    }, {
+                "service_type": {
+                    "description": "Service type \"distance\" or \"volumetric\" (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+                    }, {
+                "price": {
+                    "description": "Default price (Mandatory)",
+                    "type": "text",
+                    "mandatory": "true"
+                }
+                    }, {
+
+                "start_time": {
+                    "description": "Service start time, ex: 08:00 (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+
+                    }, {
+
+                "end_time": {
+                    "description": "Service end time, ex: 17:00 (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+                    }, {
+                "week": {
+                    "description": "available days on week, ex: \"1,2,3,4,5\" ,0 Sunday, 1 Monday, 2 Tuesday, 3 Wednesday, 4 Thursday, 5 Friday, 6 Saturday (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+                    }, {
+                "description": {
+                    "description": "Service description",
+                    "type": "text",
+                    "mandatory": true
+                }
+                    }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response (0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token for the current session",
+                    "type": "text"
+                }
+            }],
+            "description": "Push services API is used for add one or multiple services to 6Connect. Each service must be in a JSON array format<br>- If a service has never been used before, it will be replaced permanently.<br>- If a service has been used before, it will suspend the previous old one and create a new record. <br>(Whether a service has been used before is based on the submitted service id by the courier)",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "PlFp3L2enCJmB"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - No services"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "remove service": {
+            "uri": "courier/removeservice",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "service_id": {
+                    "description": "Service id that already added in system (mandatory)",
+                    "type": "number",
+                    "mandatory": true
+                }
+			}, {
+                "company": {
+                    "description": "ID of the organisation to which currently this service is assigned (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the Response(0 for Success)",
+                    "type": "text"
+                }
+            }, {
+                "access_key": {
+                    "description": "Token of current session",
+                    "type": "text"
+                }
+            }],
+            "description": "Remove service API is used for remove assigned services from a specific organisation. This API requires two parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "PlFp3L2enCJmB"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "Invalid input - no service ID"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 2
+            }
+        },
+        "assign service": {
+            "uri": "courier/assignservice",
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "hasFileInput": false,
+            "request-parameters": [{
+                "service_id": {
+                    "description": "Service id that already added in system (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+			}, {
+                "company": {
+                    "description": "ID of the organisation to which currently this service is assigned (mandatory)",
+                    "type": "text",
+                    "mandatory": true
+                }
+            }],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the response",
+                    "type": "number"
+                }
+            }, {
+                "access_key": {
+                    "description": "Your token for this session",
+                    "type": "text"
+                }
+            }],
+            "description": "Assign service API is used for assigning a service to specific organisation. This API requires two parameters.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "access_key": "PlFp3L2enCJmB"
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        },
+        "List service request": {
+            "uri": "courier/listservicerequest",
+            "hasFileInput": false,
+            "method": "POST",
+            "request-header": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "request-parameters": [{
+                "search": {
+                    "description": "search string to filter result",
+                    "type": "text",
+                    "mandatory": false
+                }
+			}],
+            "response-parameters": [{
+                "code": {
+                    "description": "Result of the Response(0 for Success)",
+                    "type": "number"
+                }
+            }, {
+                "requests": {
+                    "description": "A JSONArray of search requests Object",
+                    "type": "JSONArray"
+                }
+            }],
+            "description": "List service request API is used for list all service requests available for bidding. This API consists of one parameter.",
+            "response": [{
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 0,
+                    "requests": [
+                        {
+                            "request_id": "28",
+                            "name": "test request",
+                            "deliveries_per_month": "122",
+                            "service_duration": "12",
+                            "payment_term": "nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur",
+                            "other_conditions": "nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur",
+                            "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+                            "added_on": "2015-09-16 12:47:31",
+                            "type_id": "0",
+                            "type": null
+		},
+                        {
+                            "request_id": "29",
+                            "name": "kj,m",
+                            "deliveries_per_month": "0",
+                            "service_duration": "0",
+                            "payment_term": "iuhkj",
+                            "other_conditions": "iklm",
+                            "description": "",
+                            "added_on": "2015-09-16 15:12:49",
+                            "type_id": "0",
+                            "type": null
+		},
+                        {
+                            "request_id": "30",
+                            "name": "Test request from SM",
+                            "deliveries_per_month": "120",
+                            "service_duration": "12",
+                            "payment_term": "df ssdfsdfsd df sdfsdf",
+                            "other_conditions": "dfds fsdfdf",
+                            "description": "dffdg fdgfdg fdgd dfgdfgdfgdfg",
+                            "added_on": "2015-09-22 05:32:51",
+                            "type_id": "0",
+                            "type": null
+		},
+                        {
+                            "request_id": "32",
+                            "name": "hfgh fghfghfgh fghfghfg",
+                            "deliveries_per_month": "122",
+                            "service_duration": "12",
+                            "payment_term": "fghfh gfhf ghfgh",
+                            "other_conditions": "fgfgf ghg h gjhg jghj hjghjghj",
+                            "description": "fgh fghfg gfhfg gh fghfghfgh",
+                            "added_on": "2015-11-16 10:14:19",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "33",
+                            "name": "dfgd",
+                            "deliveries_per_month": "456",
+                            "service_duration": "6",
+                            "payment_term": "dfgdfgdf",
+                            "other_conditions": "gdfgdfg",
+                            "description": "gdfdfgd fgdfgdfg",
+                            "added_on": "2015-11-16 10:39:01",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "34",
+                            "name": "Delivery to 8 locations",
+                            "deliveries_per_month": "8",
+                            "service_duration": "1",
+                            "payment_term": "credit",
+                            "other_conditions": "NA",
+                            "description": "Item description \n Number of Cartons\n Measurement\n Weight\n Local address\n \nHeineken 2016 Diary\n 5 ctn\n 37x22.5x22cm\n 10kg/ctn\n DFS VENTURE SINGAPORE (PTE) LIMITED\n\nUNIT 047-002/6/8 PASSENGER TERMINAL 2,\n\n4TH STOREY NORTH FINGER  OFFICE,  SINGAPORE 819643\n\nContact person: Patricia Sim\n\nTel: .+65 65422247\n \nHeineken 2016 Diary\n 5 ctn\n 37x22.5x22cm\n 10kg/ctn\n W Star Corporation Pte Ltd\n\n390 Orchard Road\n\n#04-03 Palais Renaissance\n\nSingapore 238871\n\nContact person: Myintzu Zaw\n\nTel:  +65 6736 0080\n \nHeineken 2016 Diary\n 5 ctn\n 37x22.5x22cm\n 10kg/ctn\n Pejandy International Pte Ltd\n\n7500A Beach Road, The Plaza #14-316/317\n\nSingapore 199591\n\nContact person: Shuling\n\nTel: +65 6294 5661\n\n \n \nHeineken 2016 Diary\n 10 ctn\n 37x22.5x22cm\n 10kg/ctn\n T SPECIALIST INTERNATIONAL (S) PTE LTD\n\n381 Joo Chiat Road, #04-00, OCN Building\n\nSingapore 427621\n\nContact person: Joycelyn\n\nTel: +65 6440 0831\n\n \n \nHeineken 2016 Diary\n 15 ctn\n 37x22.5x22cm\n 10kg/ctn\n SUTL CORPORATION PTE LTD\n\n100J Pasir Panjang Road #05-00 \n\nSUTL House Singapore 118525\n\nContact person: Lee Peck Kee\n\nTel: 6278 8555\n \nHeineken 2016 Diary\n 15 ctn\n 37x22.5x22cm\n 10kg/ctn\n Aurum Mestika Sejati Pte Ltd\n\n5 Soon Lee Street #03-13/14\n\nPioneer Point Singapore 627607\n\nContact person: Karen\n\nTel: 6749 6088    \n \nHeineken 2016 Diary\n 15 ctn\n 37x22.5x22cm\n 10kg/ctn\n Fair Breeze Trading Pte Ltd\n\n8 Pandan Crescent #01-03 Singapore 128464\n\nContact person: Raymond Yap\n\nTel: +65 6278 7300   \n \nHeineken 2016 Diary\n 25 ctn\n 37x22.5x22cm\n 10kg/ctn\n New Port Duty Free Pte Ltd\n\n11 Kwong Min Road\n\nSingapore 628713\n\nContact person: Dalpne\n\nTel: (65) 6278 9196\n\n \n \n\n \n\n*Collection @ YCH Global Logistic Pte Ltd, No. 1 Buroh Lane, 4/FL, WLNA Bldg S(618292)",
+                            "added_on": "2015-12-18 03:26:35",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "36",
+                            "name": "test request",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                            "other_conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                            "added_on": "2016-01-06 08:25:19",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "42",
+                            "name": "CNY Hamper delivery",
+                            "deliveries_per_month": "130",
+                            "service_duration": "1",
+                            "payment_term": "Payment will be done 30 days upon completion of jobs and receipt of invoice.",
+                            "other_conditions": "na.",
+                            "description": "Deliver 130 hampers to our customers in singapore. Each hampers are about 1-m tall and 50 by 50cm",
+                            "added_on": "2016-02-03 04:25:53",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "43",
+                            "name": "g",
+                            "deliveries_per_month": "879789",
+                            "service_duration": "12",
+                            "payment_term": "gh",
+                            "other_conditions": "gh",
+                            "description": "ghgfh",
+                            "added_on": "2016-02-03 05:48:14",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "47",
+                            "name": "gdf",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "jghjghjgh",
+                            "other_conditions": "gjghjghj",
+                            "description": "gdfgdfgdf fdf",
+                            "added_on": "2016-02-03 09:42:17",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "48",
+                            "name": "this is test 456",
+                            "deliveries_per_month": "34",
+                            "service_duration": "12",
+                            "payment_term": "ghfghfgh",
+                            "other_conditions": "0",
+                            "description": "dfgfg",
+                            "added_on": "2016-02-03 11:01:24",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "49",
+                            "name": "ghjg",
+                            "deliveries_per_month": "67",
+                            "service_duration": "12",
+                            "payment_term": "jghjgh",
+                            "other_conditions": "ghjghjghjg hjghj",
+                            "description": "ghjghj",
+                            "added_on": "2016-02-03 11:02:47",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "50",
+                            "name": "fgdfg",
+                            "deliveries_per_month": "54",
+                            "service_duration": "12",
+                            "payment_term": "fghfghfgh",
+                            "other_conditions": "",
+                            "description": "fgdfgdfg dfgdfg",
+                            "added_on": "2016-02-03 11:10:39",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "51",
+                            "name": "tytyrty",
+                            "deliveries_per_month": "453",
+                            "service_duration": "12",
+                            "payment_term": "rtyrty",
+                            "other_conditions": "",
+                            "description": "tryrt",
+                            "added_on": "2016-02-08 08:12:54",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "53",
+                            "name": "fghfghgf",
+                            "deliveries_per_month": "556",
+                            "service_duration": "12",
+                            "payment_term": "fghfgh",
+                            "other_conditions": "",
+                            "description": "fghfghgfhfgh",
+                            "added_on": "2016-02-08 11:35:02",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "55",
+                            "name": "asdasd",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "cash",
+                            "other_conditions": "",
+                            "description": "wqeqweqeqe",
+                            "added_on": "2016-02-16 06:05:59",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "57",
+                            "name": "erwrwr",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "cash",
+                            "other_conditions": "",
+                            "description": "dafagaggag",
+                            "added_on": "2016-02-18 04:59:11",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "58",
+                            "name": "asd",
+                            "deliveries_per_month": "123",
+                            "service_duration": "12",
+                            "payment_term": "cas",
+                            "other_conditions": "",
+                            "description": "weqrqtetesdfsd",
+                            "added_on": "2016-02-18 05:42:28",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "59",
+                            "name": "asdad",
+                            "deliveries_per_month": "2",
+                            "service_duration": "12",
+                            "payment_term": "casg",
+                            "other_conditions": "",
+                            "description": "aerqqwrqwrqrqrqrw",
+                            "added_on": "2016-02-21 06:06:04",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "60",
+                            "name": "Tuas Parcel Delivery",
+                            "deliveries_per_month": "10",
+                            "service_duration": "1",
+                            "payment_term": "credit",
+                            "other_conditions": "",
+                            "description": "20cm X 20cm X 20cm \n10kg\n\ntotal 10 locations",
+                            "added_on": "2016-02-22 05:22:13",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "62",
+                            "name": "Supplies & Demands",
+                            "deliveries_per_month": "1",
+                            "service_duration": "12",
+                            "payment_term": "14-days credit term",
+                            "other_conditions": "",
+                            "description": "We are delivering gas and bananas",
+                            "added_on": "2016-02-23 07:12:56",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "67",
+                            "name": "aaaaaaaaaa",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "12",
+                            "other_conditions": "",
+                            "description": "aaaaaaaaaaaa",
+                            "added_on": "2016-02-26 10:05:37",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "68",
+                            "name": "test bidding config",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "12",
+                            "other_conditions": "12",
+                            "description": "big stack of test cases i am about to do1",
+                            "added_on": "2016-03-01 02:39:11",
+                            "type_id": "1",
+                            "type": "type 1"
+		},
+                        {
+                            "request_id": "69",
+                            "name": "testing api",
+                            "deliveries_per_month": "12",
+                            "service_duration": "12",
+                            "payment_term": "12",
+                            "other_conditions": "14",
+                            "description": "delivering test cases",
+                            "added_on": "2016-03-02 09:14:19",
+                            "type_id": "1",
+                            "type": "type 1"
+		}
+	]
+                }
+            }, {
+                "header": {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip"
+                },
+                "json": {
+                    "code": 999,
+                    "message": "No Access Token Found"
+                }
+            }],
+            "tool-response": {
+                "success": 0,
+                "failure": 1,
+                "no-token": 1
+            }
+        }
+    }]
+}

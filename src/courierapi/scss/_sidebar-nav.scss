@@ -1,0 +1,86 @@
+.sidebar-nav{
+    z-index:1;
+    position:absolute;
+    margin-top:10px;
+    right:0;
+    left:0;
+    & > li{
+        border-top:1px solid $beige;
+        padding:10px 25px 10px 25px;
+        background-color:$no-bg;
+        @include transition-style();
+        & > a{
+            @include transition-style();
+            color:$navy-blue;
+            font-size:20px;
+            font-weight:bold;
+            display:block;
+            
+            &.active{
+                @include transition-style();
+                & > span.glyphicon-chevron-left{
+                    @include transition-style();
+                    -webkit-transform:rotate(-90deg);
+                    transform:rotate(-90deg);
+                }
+            }
+            
+            & > span.glyphicon-chevron-left{
+                @include transition-style();
+                -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+            }
+            
+            
+            
+            &:hover{
+                text-decoration:none;    
+            }
+            
+            &:focus{
+                text-decoration:none;
+            }
+        }
+        
+        &:hover{
+                background-color:$beige;
+                @include transition-style();
+        }
+        
+        &:first-child{
+            border-top:none;
+        }
+    }
+    
+    .api-wrapper{
+        padding:5px 25px 5px 25px;
+        background-color:$no-bg;
+        @include transition-style();
+        
+        &:hover{
+            background-color:$beige;
+            @include transition-style();
+        }
+    }
+    
+    a.api{
+        color:$navy-blue;
+        text-transform: capitalize;
+        font-size:18px;
+        display:block;
+        margin-left:15px;
+        
+        
+        &:hover{
+            text-decoration:none;
+        }
+        
+        &:focus{
+            text-decoration: none;
+        }
+    }
+}
+
+.collapsing{
+    @include transition-style();
+}

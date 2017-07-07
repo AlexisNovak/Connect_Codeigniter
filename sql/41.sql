@@ -1,0 +1,1 @@
+ALTER TABLE `consignments` ADD `c_appointment` INT NULL DEFAULT '0' AFTER `delivery_company_name`, ADD `d_appointment` INT NULL DEFAULT '0' AFTER `c_appointment`, ADD `collect_back` INT NULL DEFAULT '0' AFTER `d_appointment`;

@@ -1,0 +1,16 @@
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+
+.table-request-header{
+    th{
+        font-size:15px;
+    }
+}
+
+.none{
+    color:#c1baba;
+    text-align:center;
+    text-transform:uppercase;
+    font-size:23px;
+}

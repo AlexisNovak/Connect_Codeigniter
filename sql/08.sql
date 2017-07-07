@@ -1,0 +1,1 @@
+ALTER TABLE `member` ADD `login_via` TINYINT NOT NULL DEFAULT '0' COMMENT '1=fb,2=g+';

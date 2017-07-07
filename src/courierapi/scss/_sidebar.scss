@@ -1,0 +1,25 @@
+.sidebar-left{
+    @include scrollbar-style();
+    @include transition-style();
+    left:0;
+    top:65px;
+    bottom:0;
+    width:$sidebar-left-width;
+    position:absolute;
+    background:$light-orange;
+    z-index:2;
+}
+
+@media screen and (max-width:800px){
+    .sidebar-left{
+        z-index:4;
+        left:-$sidebar-left-width;
+    }
+}
+
+@media screen and (max-width:500px){
+    .sidebar-left{
+        z-index:1;
+        width:0;
+    }
+}

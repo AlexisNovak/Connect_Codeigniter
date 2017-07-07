@@ -1,0 +1,1 @@
+ALTER TABLE `member_details` CHANGE `country` `country` CHAR(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'sg';

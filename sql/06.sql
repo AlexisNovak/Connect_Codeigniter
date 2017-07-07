@@ -1,0 +1,1 @@
+ALTER TABLE `organizations` ADD `tracking_logo` VARCHAR(255) NULL AFTER `public_tracking`, ADD `tracking_intro` TEXT NULL AFTER `tracking_logo`;

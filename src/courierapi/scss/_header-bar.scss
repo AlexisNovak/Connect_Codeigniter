@@ -1,0 +1,125 @@
+/**navigation bar**/
+.navbar{
+    margin:0;
+    padding-bottom:7.5px;
+}
+
+.navbar >.container, .navbar > .container-fluid{
+    margin:0;
+}
+
+.navbar-nav{
+    padding:0px;
+    height:100%;
+    margin-top:7.5px;
+    margin-right:-7.5px;
+
+    &>li{
+        padding-right:7.5px;
+        float:none;
+        border-right:1px solid #c6c6c6;
+    }
+}
+
+
+.navbar-right{
+    display:flex;
+    position:absolute;
+    margin-right:7.5px;
+    margin-top:7.5px;
+    padding:0px;
+    right:0;
+    & > li{
+        padding-left:7.5px;
+        border-left:1px solid #c6c6c6;
+        & > a{
+            padding-top:15px;
+            padding-bottom:15px;
+            color:#777;
+            &:hover{
+                color: #333;
+                background-color: transparent;
+            }
+            
+            &:focus{
+                background:none;
+            }
+        }
+    }
+}
+
+.brand-centered {
+    position:absolute;
+    left: 90px;
+    top: 7.5px;
+    bottom: 7.5px;
+    padding-right:7.5px;
+    width:auto;
+    border-right:1px solid #c6c6c6;
+    
+    & .navbar-brand {
+        display: flex;
+        align-items:center;
+        padding:15px;
+        margin:0;
+        max-width:350px;
+        & > img{
+            height:30px;
+            width:auto;
+        }
+    }
+    
+}
+
+@media screen and (max-width:800px){ 
+    
+    .brand-centered{
+        display: flex;
+        justify-content: center;
+        left:0;
+        width:100%;
+        border:none;
+    }
+    
+    .navbar{
+        padding:0;
+    }
+    
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+    
+    .navbar-nav{
+        float:left;
+        margin-top:7.5px;
+        margin-left:0px;
+        padding:0;
+        
+        &>li{
+            border:none;
+        }
+    }
+    
+    .navbar-right{
+        float:right;
+        margin-top:7.5px;
+        margin-right:7.5px;
+        &>li{
+            border:none;
+        }
+    }
+
+}
+
+@media screen and (max-width:770px){
+    .navbar-brand{
+        font-size:0px;
+    }
+        
+    .brand-centered{
+        left:0;
+        width:100%;
+        border:none;
+    }
+}
+

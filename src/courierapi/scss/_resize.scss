@@ -1,0 +1,71 @@
+@media screen and (max-width: 670px) {
+    #api-toggle {
+        display: none;
+    }
+}
+
+/* half screen */
+@media screen and (max-width:950px) {
+    #wrapper {
+        #page-content-wrapper {
+            @include transition-style;
+            margin-left:350px;
+            margin-right:600px;
+            position:absolute;
+        }
+        
+        #sidebar-wrapper-left {
+            width: 350px;
+        }
+
+        #sidebar-wrapper-right {
+            width: 600px;
+        }
+        
+        &.hide-menu {
+            #sidebar-wrapper-left {
+                width: 0px;
+            }
+            #page-content-wrapper {
+                margin-left: 0px;
+            }
+        }
+        &.hide-api {
+            #sidebar-wrapper-right {
+                width: 0px;
+            }
+            #page-content-wrapper {
+                margin-right:0px;
+            }
+        }
+        
+        &.hide-menu.hide-api{
+            #page-content-wrapper{
+                width:100vw;
+            }
+        }
+    }
+    
+    .btn-wrapper {
+    right: 0px;
+    left: 0px;
+    position: fixed;
+    z-index: 1;
+    top: 10px;
+    width: 100%;
+    .btn-toggle {
+        @include button-style;
+        display: block;
+        }
+    }
+}
+
+@mixin respond-to($media){
+
+    @if $media == half {
+        @media only screen and (max-width: 670px) { @content; }
+    }
+    @else if $media == full {
+        @media only screen and (max-width: 970px) { @content; }
+    }
+}

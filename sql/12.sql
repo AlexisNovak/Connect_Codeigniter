@@ -1,0 +1,1 @@
+ALTER TABLE `partner` ADD `partner_user` INT NULL AFTER `owner`;

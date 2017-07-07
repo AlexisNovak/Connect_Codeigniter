@@ -1,0 +1,8 @@
+/nbproject
+/src/filebox/
+/src/application/config/database.php
+/src/partner_project/application/config/database.php
+/src/application/config/email.php
+/src/partner_project/application/config/email.php
+/src/application/cache/
+/src/application/logs/

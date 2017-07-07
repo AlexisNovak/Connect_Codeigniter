@@ -1,0 +1,24 @@
+//font
+$font-lato:"https://fonts.googleapis.com/css?family=Lato";
+@if(global-variable-exists($font-lato)) {
+    @import url($font-lato);
+}
+
+$sidebar-left-width:400px;
+$test-tool-width:450px;
+
+//color variables
+$navy-blue:  #164C56;
+$navy-blue-light:#207281;
+$light-orange: #FBC000;
+$beige:#ffde71;
+$black:#212020;
+$white:#e0e0e0;
+$default:white;
+$grey:#c7c7c7;
+$dark-grey:#b5b5b5;
+$sky-blue-dark:#2994B2;
+$light-green:#00ce10;
+$light-red:#e24327;
+
+$no-bg:rgba(0,0,0,0);

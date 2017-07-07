@@ -1,0 +1,2 @@
+ALTER TABLE `service_requests` ADD `expiry_date` DATETIME NOT NULL AFTER `other_conditions`;
+ALTER TABLE `service_requests` ADD `inform_expire` TINYINT(2) NOT NULL COMMENT '0=no 1=expiring 2=expired' AFTER `expiry_date`; 

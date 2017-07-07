@@ -1,0 +1,1 @@
+ALTER TABLE `consignment_type` ADD `org_id` INT NULL;

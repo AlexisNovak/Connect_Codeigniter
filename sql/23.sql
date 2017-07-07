@@ -1,0 +1,1 @@
+ALTER TABLE `mailqueue` ADD `cc` TEXT NOT NULL AFTER `message`, ADD `bcc` TEXT NOT NULL AFTER `cc`, ADD `attachment` TEXT NULL AFTER `bcc`;

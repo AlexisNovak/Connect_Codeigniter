@@ -1,0 +1,44 @@
+
+
+.btn-submit-form{
+    @include button-style($no-bg,$white,$no-bg,$white);
+    min-width:100%;
+}
+
+.btn-server{
+    @include button-style($no-bg,$white,$no-bg,$white);
+    width:120px;
+    position:absolute;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    top:0px;
+    right:0px;
+}
+
+@media screen and (max-width:400px){
+    .btn-server{
+        position:relative;
+        width:100%;
+    }
+}
+
+#menu-toggle{
+    color:$grey;
+    display:block;
+    padding:15px;
+    &:hover{
+        color:$black;
+    }
+}
+
+#api-toggle{
+    color:$grey;
+    display: block;
+    padding:15px;
+    align-content: center;
+    justify-content: center;
+    
+     &:hover{
+        color:$black;
+    }
+}
